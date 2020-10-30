@@ -25,6 +25,15 @@ mongoose
 const shortLink = require("./routes/api/shortLink");
 app.use("/api/short", shortLink);
 
+//redirecting the path
+const redirect = require("./routes/api/redirect");
+app.use("/api/redirect", redirect);
+
+//hash route
+app.get("/:hash", (req, res) => {
+    const id = req.params.hash;
+    console.log(id);
+})
 
 //Listening path
 app.get("/login", (req, res) => {
