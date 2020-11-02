@@ -1,17 +1,12 @@
-import React from "react";
-//import InputField from "./../InputField/InputField"
-import Demo from "./../InputField/Demo"
-
-
+import React from 'react';
+import InputField from '../InputField/InputField';
 
 const LinkContainer = () => {
- 
-
-  return (
-    <div>
-          <Demo/>
-    </div>
-  );
-};
+    return (
+        <div>
+            <InputField/>
+        </div>
+    );
+}
 
 export default LinkContainer;

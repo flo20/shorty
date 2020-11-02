@@ -1,49 +1,65 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { Component } from "react";
+import validator from "validator";
 
-
-
-const InputField = () => {
-  const [links, setLinks] = useState({
+class InputField extends Component {
+  state = {
     url: "",
     link: "",
-  });
+  };
 
-  const handleChange = (e) => {
-   // console.log(e.target.value);
-    setLinks({
+  handleChange = (e) => {
+    //console.log(e.target.value);
+    this.setState({
       url: e.target.value,
     });
   };
-    const handleSubmit = (e) => {
-        e.preventDefault();
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const validURL = validator.isURL(this.state.url, {
+      require_protocol: true,
+    });
+    if (!validURL) {
+      alert("Ensure the URL is correct");
+    } else {
+      console.log("URL is: ", this.state.url);
+
+      //post value
         axios
-          .post("http://localhost:5000/api/short", {
-            url: links.url,
-          })
-          .then((res) => {
-            //console.log(res.data.hash);
-              setLinks({
-                  link:`http://ufol.ink/${res.data.hash}`
-              })
-          });
+            .post("http://localhost:5000/api/short", {
+                url: this.state.url,
+            })
+            .then((res) => {
+                console.log(res.data.hash);
+                this.setState({
+                    link: `http://shorten/${res.data.hash}`,
+                });
+            })
+            .catch(err => console.log(err));
+    }
   };
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="url"
-          placeholder="Enter url"
-          onChange={handleChange}
-        />
-        <button>Shorten</button>
-        <label>
-          <h1>{links.link}</h1>
-        </label>
-      </form>
-    </div>
-  );
-};
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <fieldset>
+            <input
+              type="text"
+              name="url"
+              placeholder="Enter url"
+              onChange={this.handleChange}
+            />
+            <input type="submit" value="shorter" />
+          </fieldset>
+          <fieldset>
+            <span id="result">{this.state.link}</span>
+          </fieldset>
+        </form>
+      </div>
+    );
+  }
+}
 
 export default InputField;
