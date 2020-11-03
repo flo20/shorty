@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 //Generating Schema
-const urlSchema = new Schema({
-  _id: { type: String },
+const urlSchema = new mongoose.Schema({
   url: {
     type: String,
     required: true,
@@ -17,4 +15,5 @@ const urlSchema = new Schema({
   },
 });
 
-module.exports = URL = mongoose.model("URL", urlSchema);
+const UrlModel = mongoose.model("URLModel", urlSchema);
+module.exports.UrlModel = UrlModel;

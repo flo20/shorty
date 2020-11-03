@@ -6,7 +6,18 @@ class InputField extends Component {
   state = {
     url: "",
     link: "",
+    data: [],
   };
+
+  async componentDidMount() {
+    try {
+      const { data } = await axios("/links");
+      // this.setState({data})
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   handleChange = (e) => {
     //console.log(e.target.value);
@@ -15,7 +26,7 @@ class InputField extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const validURL = validator.isURL(this.state.url, {
       require_protocol: true,
@@ -25,22 +36,17 @@ class InputField extends Component {
     } else {
       console.log("URL is: ", this.state.url);
 
-      //post value
-        axios
-            .post("http://localhost:5000/api/short", {
-                url: this.state.url,
-            })
-            .then((res) => {
-                console.log(res.data.hash);
-                this.setState({
-                    link: `http://shorten/${res.data.hash}`,
-                });
-            })
-            .catch(err => console.log(err));
+      try {
+        const { data } = await axios.post("/links", { url: this.state.url });
+        this.setState({ link: `http://shorten/${data.uniqId}` });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   render() {
+    const { data } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -57,6 +63,10 @@ class InputField extends Component {
             <span id="result">{this.state.link}</span>
           </fieldset>
         </form>
+
+        {data.map((d, index) => (
+          <li key={index}>{d.url}</li>
+        ))}
       </div>
     );
   }
