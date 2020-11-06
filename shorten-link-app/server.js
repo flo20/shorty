@@ -1,9 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const app = express(); //Initialize
-
-require("./startup/db")();
-require("./startup/routes")(app);
+require("./startup/db")(); //calling database
+require("./startup/routes")(app); // initializing routes
 
 //Port
 const port = process.env.PORT || 5000;

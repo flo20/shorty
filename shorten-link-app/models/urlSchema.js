@@ -2,12 +2,16 @@ const mongoose = require("mongoose");
 
 //Generating Schema
 const urlSchema = new mongoose.Schema({
-  url: {
+  originalUrl: {
     type: String,
     required: true,
   },
-  hash: {
+  linkId: {
     type: String,
+  },
+  newUrl: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,

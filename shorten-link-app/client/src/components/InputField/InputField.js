@@ -1,6 +1,9 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import validator from "validator";
+
+
+import "./InputField.scss";
 
 class InputField extends Component {
   state = {
@@ -9,18 +12,7 @@ class InputField extends Component {
     data: [],
   };
 
-  async componentDidMount() {
-    try {
-      const { data } = await axios("/links");
-      // this.setState({data})
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   handleChange = (e) => {
-    //console.log(e.target.value);
     this.setState({
       url: e.target.value,
     });
@@ -34,11 +26,9 @@ class InputField extends Component {
     if (!validURL) {
       alert("Ensure the URL is correct");
     } else {
-      console.log("URL is: ", this.state.url);
-
       try {
         const { data } = await axios.post("/links", { url: this.state.url });
-        this.setState({ link: `http://shorten/${data.uniqId}` });
+        this.setState({ link: `${data.url}` });
       } catch (error) {
         console.log(error);
       }
@@ -46,28 +36,34 @@ class InputField extends Component {
   };
 
   render() {
-    const { data } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <input
-              type="text"
-              name="url"
-              placeholder="Enter url"
-              onChange={this.handleChange}
-            />
-            <input type="submit" value="shorter" />
-          </fieldset>
-          <fieldset>
-            <span id="result">{this.state.link}</span>
-          </fieldset>
-        </form>
-
-        {data.map((d, index) => (
-          <li key={index}>{d.url}</li>
-        ))}
-      </div>
+      <Fragment>
+        <div className="main-background">
+          <div className="heading-container">
+            <h1 className="heading">Shorten your Url</h1>
+            <p>Shorten, track every link to boost your brand!</p>
+            <form onSubmit={this.handleSubmit} className="form">
+              <div className="form-container">
+                <input
+                  type="text"
+                  name="url"
+                  placeholder="Enter your url here"
+                  onChange={this.handleChange}
+                  className="input-box"
+                />
+                {/* <input type="submit" value="Shorten" /> */}
+                <button className="shorten-button">
+                  <span>Shorten Link</span>
+                </button>
+              </div>
+              {/* <fieldset className="result-field"> */}
+                <span id="result">{this.state.link}</span>
+              {/* </fieldset> */}
+              {/* <div className="result-wrapper"> */}
+            </form>
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }

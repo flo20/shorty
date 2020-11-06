@@ -1,22 +1,12 @@
 const express = require("express");
-const routers = express.Router();
+const { UrlModel } = require("../models/urlSchema");
+const router = express.Router();
 
-// Making a redirect   /api/short/test
-routers.get("/test", (req, res) => res.json({ message: "API is working" }));
-
-//headers hash
-//Redirect user
-//access Public
-
-routers.get("/", (req, res) => {
-  const hash = req.headers.hash;
-  URL.findOne({ _id: hash })
-    .then((doc) => {
-      return res.json({ url: doc.url });
-    })
-    .catch((err) => {
-      return res.status(400).json({ err: "Link has expired." });
-    });
+router.get("/:linkId", async (req, res) => {
+  const url = await UrlModel.findOne({ linkId: req.params.linkId });
+  if (url) {
+    res.redirect(url.originalUrl);
+  }
 });
 
-module.exports = routers;
+module.exports = router;

@@ -10,5 +10,5 @@ module.exports = function (app) {
 
   //routes
   app.use("/links", shortLink);
-  app.use("/api/redirect", redirect);
+  app.use("/", redirect);
 };

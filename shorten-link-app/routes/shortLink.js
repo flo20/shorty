@@ -3,38 +3,29 @@ const routers = express.Router();
 const uniqid = require("../utils/genId");
 const { UrlModel } = require("../models/urlSchema");
 
-//loading URL
-routers.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With,Content-Type, Accept"
-  );
-  next();
-});
-
 // Making GET request   /api/short/test
 routers.get("/", async (req, res) => {
-  const allUrl = await UrlModel.find().select("url uniqid -_id");
+  const allUrl = await UrlModel.find().select("newUrl -_id");
 
   res.send(allUrl);
 });
 
 // Making POST request /api/short
 routers.post("/", async (req, res) => {
-  let newDoc = await UrlModel.findOne({ url: req.body.url });
-  if (newDoc) return res.status(400).send("This entry already exist");
+  let newDoc = await UrlModel.findOne({ originalUrl: req.body.url });
+  if (newDoc) return res.send({ url: newDoc.newUrl });
 
   const myId = uniqid(6);
 
   newDoc = new UrlModel({
+    originalUrl: req.body.url,
     linkId: myId,
-    // url: req.body.url,
+    newUrl: `localhost:5000/${myId}`,
   });
 
   newDoc = await newDoc.save();
 
-  res.send(req.body);
+  res.send({ url: newDoc.newUrl });
 });
 
 module.exports = routers;
