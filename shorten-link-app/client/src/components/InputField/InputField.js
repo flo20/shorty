@@ -3,7 +3,7 @@ import React, { useState, Fragment, useEffect, useRef } from "react";
 import validator from "validator";
 
 import "./InputField.scss";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineCopy } from "react-icons/ai";
 
 const InputField = () => {
   const [input, setInput] = useState({
@@ -12,15 +12,29 @@ const InputField = () => {
     data: [],
   });
   const [showResult, setShowResult] = useState(false);
+  const [showCopy, setShowCopy] = useState("");
 
   const handleShow = () => setShowResult(!showResult);
 
   //handling focus cursor
   const inputRef = useRef(null);
-
   useEffect(() => {
     inputRef.current.focus();
   });
+
+  //handling copied text
+  const textAreaRef = useRef(null);
+
+  const copyToClipboard = (e) => {
+    textAreaRef.current.select();
+    document.execCommand("copy");
+    e.target.focus();
+    setShowCopy("Copied!");
+  };
+
+  const onHandle = () => {
+    setInput({input:input.link})
+  }
 
   const handleChange = (e) => {
     setInput({
@@ -33,7 +47,7 @@ const InputField = () => {
     const validURL = validator.isURL(input.url, {
       require_protocol: true,
     });
-    //handling valid url
+
     if (!validURL) {
       alert("Ensure the URL is correct");
     } else {
@@ -47,14 +61,14 @@ const InputField = () => {
   };
 
   const removeLink = () => {
-    setInput({ link: "" });
+    setInput({ link: "" }) || setShowCopy("");
   };
   return (
     <Fragment>
       <div className="main-background">
         <div className="heading-container">
           <h1 className="heading">Shorten your Url</h1>
-          <p>Shorten, track every link to boost your brand!</p>
+          <p>Shorten every link to boost your brand!</p>
           <form onSubmit={handleSubmit} className="link-form">
             <div className="form-container">
               <input
@@ -72,15 +86,29 @@ const InputField = () => {
             </div>
           </form>
 
-          <div className={showResult ? "field" : ""}>
-            <div className="result">{input.link}</div>
-            <div className="icon">
-              <AiOutlineDelete
-                onClick={() => removeLink()}
-                className="delete-icon"
+          {showResult && (
+            <div className="field">
+              <div className="icon">
+                <AiOutlineCopy onClick={copyToClipboard} />
+              </div>
+
+              <input
+                name="name"
+                type="text"
+                value={input.link || ""}
+                ref={textAreaRef}
+                onChange={onHandle}
               />
+
+              <div className="icon">
+                {showCopy}
+                <AiOutlineDelete
+                  onClick={() => removeLink()}
+                  className="delete-icon"
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </Fragment>
