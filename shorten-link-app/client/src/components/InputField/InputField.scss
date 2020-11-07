@@ -69,7 +69,6 @@
   outline: none;
   background: #fff;
   color: #1a1f27;
-
 }
 .shorten-button:hover {
   cursor: pointer;
@@ -111,19 +110,14 @@
   font-size: 20px;
   cursor: pointer;
   color: rgb(230, 86, 3);
-
-
 }
 .icon:hover {
   filter: brightness(120%);
 }
 
-
-.icon .delete-icon{
-  padding-left:1rem;
- 
+.icon .delete-icon {
+  padding-left: 1rem;
 }
-
 
 .extra-info {
   display: flex;
@@ -131,12 +125,11 @@
   align-items: center;
   flex-direction: column;
   padding-top: 5rem;
-    color: #1a1f27;
+  color: #1a1f27;
 }
 .extra-info p {
   text-align: center;
   width: 50%;
-
 }
 
 .page-footer {

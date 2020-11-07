@@ -21,10 +21,12 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "client-install": "npm install --prefix client",
+     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\" ",
-    "start": "react-scripts start",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false  npm install --prefix client && npm run build --prefix client", 
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
