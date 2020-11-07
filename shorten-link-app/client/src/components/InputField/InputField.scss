@@ -43,61 +43,74 @@
   z-index: 1;
 }
 
+.link-form {
+  margin-bottom: 32px;
+}
+
 .input-box {
-  line-height: 40px;
-  font-size: 15px;
-  border: none;
-  -o-transition: 0.3s ease;
-  transition: 0.3s ease;
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-  border-radius: 10px;
-  width: 35%;
-  text-align: center;
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #fff;
+  outline: none;
+  width: 320px;
+  background: transparent;
+  color: #fff;
+}
+
+.input-box::placeholder {
+  color: #acacac;
 }
 
 .shorten-button {
-  //line-height: 40px;
-  padding: 0.8rem 2rem;
-  display: inline;
-  font-size: 15px;
+  padding: 16px;
   border: none;
-  -o-transition: 0.3s ease;
-  transition: 0.3s ease;
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-  border-radius: 10px;
-  margin-left: 1rem;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: #fff;
+  color: #1a1f27;
+  text-transform: capitalize;
 }
 .shorten-button:hover {
-  filter: opacity(0.3);
   cursor: pointer;
+  color: #acacac;
 }
-// .form {
-//   width: 35rem;
-// }
+
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.result-field {
-  // background: #fff;
-  // padding: 30px 15px;
-  // border-radius: 15px;
-  // right: 0;
-  // left: 0;
-  // display: none;
-  // z-index: 1000;
-  // -webkit-box-shadow: 0 0 50px 5px rgba(214,214,214,.29);
-  // box-shadow: 0 0 50px 5px rgba(214,214,214,.29);
-  // position: absolute;
-  // margin: 0 30px;
-  // margin-top: 20px;
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  background: white;
+  border-radius: 5px;
+  width: 520px;
+  padding: 16px;
+  color: #1a1f27;
 }
-#result {
-  background: #fff;
-  width: 55%;
-  height: 500px;
-  padding-top: 20px;
+
+.hide-result {
+  visibility: hidden;
+  opacity: 1;
+  transition: 0.3s all;
 }
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+.icon:hover {
+  filter: brightness(120%);
+}
+
+// .delete-icon {
+//   margin-right: 5px;
+//   color: rgb(230, 86, 3);
+// }
