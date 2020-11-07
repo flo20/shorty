@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express(); //Initialize
-require("./startup/db")(); //calling database
+require("./config/db")(); //calling database
 require("./startup/routes")(app); // initializing routes
 
 //Port
