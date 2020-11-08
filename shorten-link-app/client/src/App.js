@@ -1,9 +1,10 @@
 import React from 'react';
+import LinkContainer from "./components/LinkContainer/LinkContainer"
 
 const App = () => {
   return (
     <div>
-      Clean up
+      <LinkContainer/>
     </div>
   );
 }

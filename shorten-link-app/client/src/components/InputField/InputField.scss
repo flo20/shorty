@@ -1,0 +1,142 @@
+@import "./../../styles/scss/variables.scss";
+
+.back {
+  background: $background-color;
+}
+
+.result-wrapper {
+  background: rgb(184, 79, 79);
+  padding: 30px 15px;
+  border-radius: 15px;
+  right: 0;
+  left: 0;
+  display: none;
+  z-index: 1000;
+  -webkit-box-shadow: 0 0 50px 5px rgba(214, 214, 214, 0.29);
+  box-shadow: 0 0 50px 5px rgba(214, 214, 214, 0.29);
+  position: absolute;
+  margin: 0 30px;
+  margin-top: 20px;
+}
+
+.main-background {
+  position: relative;
+  height: 550px;
+  display: block;
+  margin-top: -80px;
+  background: #1a1f27;
+}
+
+.main-background p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.heading {
+  color: white;
+}
+
+.heading-container {
+  position: relative;
+  top: 250px;
+  display: block;
+  text-align: center;
+  z-index: 1;
+}
+
+.link-form {
+  margin-bottom: 32px;
+}
+
+.input-box {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #fff;
+  outline: none;
+  width: 35%;
+  background: transparent;
+  color: #fff;
+}
+
+.input-box::placeholder {
+  color: #acacac;
+}
+
+.shorten-button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: #fff;
+  color: #1a1f27;
+}
+.shorten-button:hover {
+  cursor: pointer;
+  color: #acacac;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  background: white;
+  border-radius: 5px;
+  width: 35%;
+  padding: 16px;
+  color: #1a1f27;
+  max-width: 500px;
+}
+.field input {
+  border: none;
+  width: 70%;
+  outline: none;
+}
+.hide-result {
+  visibility: hidden;
+  opacity: 1;
+  transition: 0.3s all;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgb(230, 86, 3);
+}
+.icon:hover {
+  filter: brightness(120%);
+}
+
+.icon .delete-icon {
+  padding-left: 1rem;
+}
+
+.extra-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5rem;
+  color: #1a1f27;
+}
+.extra-info p {
+  text-align: center;
+  width: 50%;
+}
+
+.page-footer {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  color: #bac1c7;
+  padding: 0px 0 10px;
+  text-align: center;
+}
