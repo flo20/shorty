@@ -20,7 +20,7 @@ routers.post("/", async (req, res) => {
   newDoc = new UrlModel({
     originalUrl: req.body.url,
     linkId: myId,
-    newUrl: `localhost:5000/${myId}`,
+    newUrl: `https://pacific-scrubland-18134.herokuapp.com/${myId}`,
   });
 
   newDoc = await newDoc.save();

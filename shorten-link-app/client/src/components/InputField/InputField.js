@@ -53,7 +53,7 @@ const InputField = () => {
     } else {
       try {
         const { data } = await axios.post("/links", { url: input.url });
-        setInput({ link: `http:/${data.url}` });
+        setInput({ link: `${data.url}` });
       } catch (error) {
         console.log(error);
       }
