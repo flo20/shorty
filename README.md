@@ -14,6 +14,8 @@ The app allows the user to shorten their long URL link by replacing the length o
 - Node + Express
 - MongoDB
 - React-icons
+- Axios
+- Validator
 - Heroku
 
 
